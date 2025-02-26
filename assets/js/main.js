@@ -111,6 +111,9 @@ const scrollLogoShrink = () => {
             opacity: 0,
             duration: 0.5,
           });
+          gsap.to("[data-logo-shrink] svg", {
+            y: 0,
+          })
         },
         onEnterBack: () => {
           gsap.to("[data-header-logo], [data-scrolldown]", {
@@ -118,6 +121,9 @@ const scrollLogoShrink = () => {
             duration: 0.5,
             delay: 0.5,
           });
+          gsap.to("[data-logo-shrink] svg", {
+            y: isMobile ? -30 : 0,
+          })
         },
       });
     }

@@ -46,8 +46,8 @@
 .c-logo {
   position: fixed;
   left: 50%;
-  transform: translateX(-50%);
-  padding: 24px 30px 30px;
+  transform: translate(-50%, 0);
+  padding: 25px 30px 15px 20px;
   z-index: 100;
 
   display: flex;
@@ -64,6 +64,10 @@
     align-items: center;
     width: calc(224.93px + 76px);
     padding: 20px 38px 0;
+
+    svg {
+      transform: translateY(-30px);
+    }
   }
 }
 

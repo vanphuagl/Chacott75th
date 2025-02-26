@@ -14,7 +14,7 @@
     &_container {
       position: relative;
       overflow: hidden;
-      padding-top: 250px;
+      padding-top: 238px;
       background: linear-gradient(
         to bottom,
         #f4eee6 0%,
@@ -23,34 +23,34 @@
       );
 
       @include maxW(1023px) {
-        padding-top: 200px;
+        padding-top: 192px;
       }
     }
 
     &_line {
       position: absolute;
-      top: 90px;
-      left: 50%;
+      top: 50px;
+      left: 52%;
       transform: translateX(-50%);
-      width: 102%;
+      width: 110%;
       pointer-events: none;
 
       .topl2 {
-        transform: translateY(-150px);
+        transform: translate(-40px, -160px);
       }
 
       @include maxW(1023px) {
-        top: 285px;
+        top: 280px;
         width: 100%;
 
         .topl1 {
-          width: 132%;
-          transform: translate(-12%, 0) rotate(-9deg);
+          width: 140%;
+          transform: translate(-12.5%, 0) rotate(-9deg);
         }
 
         .topl2 {
-          width: 152%;
-          transform: translate(-28%, 52%);
+          width: 154%;
+          transform: translate(-28.5%, 55%);
         }
       }
     }
@@ -102,12 +102,11 @@
       text-align: center;
 
       .txt {
-        margin-bottom: 100px;
+        margin-bottom: 60px;
         font-size: 1.8rem;
         font-weight: 500;
         letter-spacing: -0.72px;
-        line-height: 2.67;
-        font-feature-settings: "palt";
+        line-height: 3.3;
 
         &:last-child {
           margin-bottom: initial;
@@ -116,10 +115,10 @@
 
       @include maxW(1023px) {
         .txt {
-          margin-bottom: 50px;
+          margin-bottom: 38px;
           font-size: 1.4rem;
           letter-spacing: -0.56px;
-          line-height: 2.29;
+          line-height: 2.55;
         }
       }
     }
