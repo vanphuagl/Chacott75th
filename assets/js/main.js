@@ -187,6 +187,28 @@ panels.forEach((panel, i) => {
     },
   });
 });
+
+//
+ScrollTrigger.create({
+  trigger: "[data-anni]",
+  start: "top bottom",
+  end: "top bottom",
+  markers: false,
+  invalidateOnRefresh: true,
+  onEnter: () => {
+    gsap.to(".top_chacott_inner", {
+      opacity: 0,
+      duration: 1,
+    })
+  },
+  onEnterBack: () => {
+    gsap.to(".top_chacott_inner", {
+      opacity: 1,
+      duration: 1,
+    })
+  }
+});
+
 window.onresize = function () {
   ScrollTrigger.refresh();
 };
