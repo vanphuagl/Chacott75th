@@ -209,9 +209,11 @@ ScrollTrigger.create({
   }
 });
 
-window.onresize = function () {
-  ScrollTrigger.refresh();
-};
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 1023) {
+    ScrollTrigger.refresh();
+  }
+})
 
 // DOMContentLoaded
 window.addEventListener("DOMContentLoaded", init);
