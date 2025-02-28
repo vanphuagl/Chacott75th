@@ -4781,13 +4781,16 @@
         })(n, n.svgatorPlayer, u);
     }
     play(t = true) {
+      // trigger line 1
       window.addEventListener("scroll", () => {
         if (
           window.scrollY >
           document.querySelector("[data-line1]").getBoundingClientRect().top
         ) {
-          const e = super.play();
-          return t === te && this.trigger("play", this.offset), e;
+          setTimeout(() => {
+            const e = super.play();
+            return t === te && this.trigger("play", this.offset), e;
+          }, 1000);
         }
       });
     }
@@ -7218,13 +7221,16 @@
         })(n, n.svgatorPlayer, u);
     }
     play(t = true) {
+      // trigger line 2
       window.addEventListener("scroll", () => {
         if (
           window.scrollY >
-          document.querySelector("[data-line2]").getBoundingClientRect().top + 200
+          document.querySelector("[data-line1]").getBoundingClientRect().top
         ) {
-          const e = super.play();
-          return t === te && this.trigger("play", this.offset), e;
+          setTimeout(() => {
+            const e = super.play();
+            return t === te && this.trigger("play", this.offset), e;
+          }, 3000);
         }
       });
     }
