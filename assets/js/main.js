@@ -107,6 +107,7 @@ const scrollEvents = () => {
     },
     (context) => {
       let { isMobile } = context.conditions;
+      console.log('isMobile', isMobile)
 
       // scroll logo shrink
       ScrollTrigger.create({
@@ -169,6 +170,17 @@ const scrollEvents = () => {
           })
         }
       });
+      // scroll sticky anni logo
+      if (isMobile) {
+        gsap.to(".anni_logo", {
+          scrollTrigger: {
+            trigger: ".anni",
+            start: "top top",
+            pin: ".anni_logo",
+            markers: false,
+          }
+        });
+      }
     }
   );
 };
