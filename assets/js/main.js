@@ -64,7 +64,7 @@ const initLoader = () => {
     .to("[data-loading-overlay]", {
       top: 0,
       duration: 1.8,
-      delay: 0.5,
+      delay: 1,
       ease: Power4.easeOut,
     })
     .to("[data-logo-shrink]", {
@@ -79,7 +79,7 @@ const initLoader = () => {
     .to("[data-header-logo], [data-scrolldown]", {
       opacity: 1,
       duration: 1,
-      delay: 3.5,
+      delay: 3.8,
       ease: Power4.easeInOut,
     });
 };
@@ -133,7 +133,7 @@ const scrollEvents = () => {
         onEnter: () => {
           gsap.to("[data-header-logo], [data-scrolldown]", {
             opacity: 0,
-            duration: 0.5,
+            duration: 0.2,
           });
           gsap.to("[data-logo-shrink] svg", {
             y: 0,
@@ -142,7 +142,7 @@ const scrollEvents = () => {
         onEnterBack: () => {
           gsap.to("[data-header-logo], [data-scrolldown]", {
             opacity: 1,
-            duration: 0.5,
+            duration: 0.2,
           });
           gsap.to("[data-logo-shrink] svg", {
             y: isMobile ? -30 : 0,
@@ -159,13 +159,13 @@ const scrollEvents = () => {
         onEnter: () => {
           gsap.to(".top_chacott_inner", {
             opacity: 0,
-            duration: 1,
+            duration: 0.2,
           })
         },
         onEnterBack: () => {
           gsap.to(".top_chacott_inner", {
             opacity: 1,
-            duration: 1,
+            duration: 0.2,
           })
         }
       });

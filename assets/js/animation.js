@@ -2317,7 +2317,7 @@
       setTimeout(() => {
         const e = super.play();
         return t === te && this.trigger("play", this.offset), e;
-      }, 3900);
+      }, 4200);
     }
     pause(t = !1, e = true) {
       const n = super.pause();
