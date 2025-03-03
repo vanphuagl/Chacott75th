@@ -22,6 +22,32 @@
   }
 }
 
+/* change fill line2 with device width */
+
+@include minW(1601px) {
+  .u-line2-path {
+    fill: #e9c7ca;
+  }
+}
+
+@include minW(1791px) {
+  .u-line2-path {
+    fill: #e7c0c5;
+  }
+}
+
+@include minW(2021px) {
+  .u-line2-path {
+    fill: #e5bbc0;
+  }
+}
+
+@include minW(2151px) {
+  .u-line2-path {
+    fill: #ecb0ba;
+  }
+}
+
 /* only device */
 
 .sp-only,

@@ -43,8 +43,11 @@ const initLoader = () => {
       lenis.start();
       //  scroll hidden header logo
       ScrollTrigger.create({
-        animation:
-          gsap.fromTo("[data-logo-shrink]", { opacity: 1 }, { opacity: 0, duration: 1, ease: Power4.easeInOut, }),
+        animation: gsap.fromTo(
+          "[data-logo-shrink]",
+          { opacity: 1 },
+          { opacity: 0, duration: 1, ease: Power4.easeInOut }
+        ),
         trigger: "[data-top-chacott]",
         start: "top+=10% center",
         end: "top+=10% center",
@@ -67,15 +70,19 @@ const initLoader = () => {
       delay: 1,
       ease: Power4.easeOut,
     })
-    .to("[data-logo-shrink]", {
-      opacity: 1,
-      duration: 0.5,
-      onComplete: () => {
-        gsap.to("[data-loading]", {
-          zIndex: "-100",
-        });
+    .to(
+      "[data-logo-shrink]",
+      {
+        opacity: 1,
+        duration: 0.5,
+        onComplete: () => {
+          gsap.to("[data-loading]", {
+            zIndex: "-100",
+          });
+        },
       },
-    }, "-=0.7")
+      "-=0.7"
+    )
     .to("[data-header-logo], [data-scrolldown]", {
       opacity: 1,
       duration: 1,
@@ -107,7 +114,6 @@ const scrollEvents = () => {
     },
     (context) => {
       let { isMobile } = context.conditions;
-      console.log('isMobile', isMobile)
 
       // scroll logo shrink
       ScrollTrigger.create({
@@ -132,24 +138,38 @@ const scrollEvents = () => {
         toggleActions: "play none reverse none",
         markers: false,
         onEnter: () => {
-          gsap.to("[data-header-logo], [data-scrolldown]", {
+          gsap.to("[data-header-logo]", {
             opacity: 0,
             duration: 0.2,
           });
           gsap.to("[data-logo-shrink] svg", {
             y: 0,
-          })
+          });
+          // ===
+          if (isMobile) {
+            gsap.to("[data-scrolldown]", {
+              opacity: 0,
+              duration: 0.2,
+            });
+          }
         },
         onEnterBack: () => {
-          gsap.to("[data-header-logo], [data-scrolldown]", {
+          gsap.to("[data-header-logo]", {
             opacity: 1,
             duration: 0.2,
           });
           gsap.to("[data-logo-shrink] svg", {
             y: isMobile ? -30 : 0,
-          })
+          });
+          // ===
+          if (isMobile) {
+            gsap.to("[data-scrolldown]", {
+              opacity: 1,
+              duration: 0.2,
+            });
+          }
         },
-      })
+      });
       // scroll hide chacott logo
       ScrollTrigger.create({
         trigger: "[data-anni]",
@@ -158,18 +178,40 @@ const scrollEvents = () => {
         markers: false,
         invalidateOnRefresh: true,
         onEnter: () => {
-          gsap.to(".top_chacott_inner", {
+          gsap.to(".top_chacott_inner, [data-scrolldown]", {
             opacity: 0,
             duration: 0.2,
-          })
+          });
         },
         onEnterBack: () => {
-          gsap.to(".top_chacott_inner", {
+          gsap.to(".top_chacott_inner, [data-scrolldown]", {
             opacity: 1,
             duration: 0.2,
-          })
-        }
+          });
+        },
       });
+      // scroll fixed logo show/hide scrolldown
+      if (isMobile) {
+        ScrollTrigger.create({
+          trigger: "[data-top-chacott]",
+          start: "bottom bottom",
+          end: "bottom bottom",
+          markers: false,
+          invalidateOnRefresh: true,
+          onEnter: () => {
+            gsap.to("[data-scrolldown]", {
+              opacity: 1,
+              duration: 0.2,
+            });
+          },
+          onEnterBack: () => {
+            gsap.to("[data-scrolldown]", {
+              opacity: 0,
+              duration: 0.2,
+            });
+          },
+        });
+      }
       // scroll sticky anni logo
       if (isMobile) {
         gsap.to(".anni_logo", {
@@ -178,7 +220,7 @@ const scrollEvents = () => {
             start: "top top",
             pin: ".anni_logo",
             markers: false,
-          }
+          },
         });
       }
     }
@@ -233,7 +275,7 @@ window.addEventListener("resize", () => {
   if (window.innerWidth > 1023) {
     ScrollTrigger.refresh();
   }
-})
+});
 
 // DOMContentLoaded
 window.addEventListener("DOMContentLoaded", init);

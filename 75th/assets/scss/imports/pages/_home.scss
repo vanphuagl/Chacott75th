@@ -29,20 +29,23 @@
 
     &_line {
       position: absolute;
-      top: 50px;
-      left: 52%;
-      transform: translateX(-50%);
-      width: 110%;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(1.05);
+      width: 100%;
+      min-width: 1558px;
       pointer-events: none;
       z-index: 1;
+      opacity: 0.2;
 
       .topl2 {
-        transform: translate(-40px, -160px);
+        transform: translate(0, -20%);
       }
 
       @include maxW(1023px) {
         top: 280px;
         width: 100%;
+        min-width: 100%;
 
         .topl1 {
           width: 140%;
@@ -65,8 +68,8 @@
 
       &_inner {
         position: absolute;
-        left: 50%;
-        top: 50%;
+        left: 51.5%;
+        top: 48%;
         transform: translate(-50%, -50%);
         text-align: center;
 
@@ -81,7 +84,7 @@
       }
 
       @include maxW(1023px) {
-        margin-top: 270px;
+        margin-top: 200px;
 
         &_inner {
           p {
@@ -107,7 +110,7 @@
 
       .txt {
         margin-bottom: 80px;
-        font-size: 1.8rem;
+        font-size: 1.9rem;
         font-weight: 500;
         letter-spacing: -0.72px;
         line-height: 3.3;
