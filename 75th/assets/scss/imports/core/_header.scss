@@ -24,4 +24,23 @@
       }
     }
   }
+
+  &_left {
+    padding-top: 25px;
+    padding-left: 30px;
+
+    a {
+      width: fit-content;
+    }
+
+    @include maxW(1023px) {
+      padding-top: 15px;
+      padding-left: 20px;
+
+      svg {
+        width: 134.13px;
+        height: auto;
+      }
+    }
+  }
 }

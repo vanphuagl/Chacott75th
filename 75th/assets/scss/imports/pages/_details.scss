@@ -1,0 +1,255 @@
+.detailspage {
+  .detail {
+    &_inner {
+      margin: 220px auto 128px;
+      padding: 0 15.97%;
+
+      @include maxW(1023px) {
+        margin: 165px auto 120px;
+        padding: 0 20px;
+      }
+    }
+
+    &_heading {
+      h2 {
+        font-size: 2.4rem;
+        font-weight: 500;
+        letter-spacing: -0.96px;
+        line-height: 1.8;
+      }
+
+      p {
+        margin-top: 15px;
+        font-family: $en-fonts;
+        font-size: 1.8rem;
+        font-weight: 300;
+        letter-spacing: 0.72px;
+        line-height: 1.5;
+        opacity: 0.7;
+      }
+
+      @include maxW(1023px) {
+        h2 {
+          font-size: 1.7rem;
+          letter-spacing: -0.68px;
+        }
+
+        p {
+          font-size: 1.4rem;
+          letter-spacing: 0.56px;
+        }
+      }
+    }
+
+    &_thumb {
+      margin-top: 80px;
+      display: block;
+      z-index: 1;
+      position: relative;
+      height: 100%;
+      height: auto;
+      padding-bottom: calc((654 / 980) * 100%);
+      background-color: #ccc;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      @include maxW(1023px) {
+        margin-top: 45px;
+        padding-bottom: 100%;
+        aspect-ratio: 1/1;
+      }
+    }
+
+    &_content {
+      h3 {
+        margin-top: 120px;
+        font-size: 2.2rem;
+        font-weight: 500;
+        letter-spacing: -0.88px;
+        line-height: 1.82;
+        text-align: justify;
+      }
+
+      p {
+        margin-top: 80px;
+        font-size: 1.7rem;
+        font-weight: 500;
+        letter-spacing: -0.68px;
+        line-height: 2;
+        text-align: justify;
+      }
+
+      a {
+        width: fit-content;
+        text-decoration: underline;
+        text-underline-offset: 6px;
+
+        &.btn {
+          width: 100%;
+          text-decoration: none;
+          height: 100px;
+          border: 1px solid #4d4d4d;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      figure {
+        display: block;
+        z-index: 1;
+        position: relative;
+        height: 100%;
+        height: auto;
+        padding-bottom: calc((307 / 460) * 100%);
+        background-color: #ccc;
+
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      @include maxW(1023px) {
+        h3 {
+          margin-top: 70px;
+          font-size: 1.6rem;
+          letter-spacing: -0.64px;
+        }
+
+        p {
+          margin-top: 45px;
+          font-size: 1.3rem;
+          letter-spacing: -0.52px;
+          line-height: 1.85;
+        }
+
+        a.btn {
+          height: 70px;
+        }
+
+        figure {
+          padding-bottom: calc((250 / 374) * 100%);
+        }
+      }
+    }
+
+    &_group {
+      margin-top: 80px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px;
+
+      &.--reverse {
+        p {
+          order: -1;
+        }
+      }
+
+      figure {
+        width: 100%;
+        height: 100%;
+      }
+
+      p {
+        margin-top: 0;
+      }
+
+      @include maxW(1023px) {
+        margin-top: 45px;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+
+        &.--reverse {
+          p {
+            order: initial;
+          }
+        }
+
+        p {
+          margin-top: 25px;
+        }
+      }
+    }
+
+    &_line {
+      margin-top: 120px;
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: #ccc;
+
+      @include maxW(1023px) {
+        margin-top: 80px;
+      }
+    }
+
+    &_gallery {
+      margin-top: 80px;
+      position: relative;
+      overflow: hidden;
+
+      figure {
+        padding-bottom: calc((400 / 300) * 100%);
+      }
+
+      @include maxW(1023px) {
+        margin: 45px -20px 0;
+        padding: 0 20px;
+      }
+    }
+
+    &_controls {
+      margin-top: 150px;
+
+      a {
+        margin: 0 auto;
+        font-size: 1.7rem;
+        font-weight: 500;
+        letter-spacing: -0.68px;
+        line-height: 2;
+        width: fit-content;
+        text-decoration: underline;
+        text-underline-offset: 6px;
+      }
+
+      @include maxW(1023px) {
+        margin-top: 80px;
+
+        a {
+          font-size: 1.3rem;
+          letter-spacing: -0.52px;
+          line-height: 1.85;
+          text-underline-offset: 5px;
+        }
+      }
+    }
+
+    &_related {
+      padding: 143px 30px 0;
+      border-top: 1px solid #ccc;
+
+      @include maxW(1023px) {
+        padding: 119px 0 0;
+      }
+    }
+
+    &_articles {
+      @include maxW(1023px) {
+        padding: 0 20px;
+      }
+    }
+  }
+}

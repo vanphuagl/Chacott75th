@@ -157,6 +157,27 @@
       margin-top: 34px;
       grid-template-columns: repeat(1, 1fr);
       gap: 34px;
+
+      &.col2-sp {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 34px 15px;
+
+        figure {
+          padding-bottom: calc((118 / 180) * 100%);
+        }
+
+        h3 {
+          margin-top: 15px;
+          font-size: 1.3rem;
+          letter-spacing: -0.52px;
+        }
+
+        p {
+          margin-top: 10px;
+          font-size: 1.2rem;
+          letter-spacing: 0.48px;
+        }
+      }
     }
   }
 

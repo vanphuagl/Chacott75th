@@ -13,10 +13,12 @@ const init = () => {
   }
   // app height
   appHeight();
-  // init loader
-  initLoader();
-  // logo shrink
-  scrollEvents();
+  if (document.getElementById("homepage")) {
+    // init loader
+    initLoader();
+    // logo shrink
+    scrollEvents();
+  }
   // lazy load
   const ll = new LazyLoad({
     threshold: 0,
@@ -244,6 +246,9 @@ const addFadeOnElements = function (elements) {
 window.addEventListener("scroll", function () {
   addFadeOnElements(fadeInArray);
 });
+window.addEventListener("pageshow", function () {
+  addFadeOnElements(fadeInArray);
+});
 
 // ===== scroll fixed section footer =====
 let panels = gsap.utils.toArray("section");
@@ -269,6 +274,26 @@ panels.forEach((panel, i) => {
     },
   });
 });
+
+/* ------------------------------ details page ------------------------------ */
+if (document.getElementById("detailspage")) {
+  const detailsSwiper = new Swiper('.detail_gallery', {
+    breakpoints: {
+      0: {
+        slidesPerView: 1.235,
+        spaceBetween: 15,
+        allowTouchMove: true,
+        draggable: true,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 40,
+        draggable: false,
+        allowTouchMove: false,
+      },
+    },
+  });
+}
 
 // reszie refresh scroll trigger
 window.addEventListener("resize", () => {
