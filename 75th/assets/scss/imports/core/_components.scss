@@ -27,7 +27,7 @@
     @include maxW(1023px) {
       top: 48%;
       left: 51%;
-      
+
       svg {
         width: 268.26px;
         height: auto;
@@ -127,6 +127,94 @@
 
     span {
       height: 45px;
+    }
+  }
+}
+
+.c-articles {
+  h2 {
+    font-family: $en-fonts;
+    font-size: 2.8rem;
+    font-weight: 300;
+    letter-spacing: 1.12px;
+    line-height: 1.5;
+  }
+
+  @include maxW(1023px) {
+    h2 {
+      font-size: 2rem;
+      letter-spacing: 0.8px;
+    }
+  }
+
+  &_list {
+    margin-top: 44px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 44px 20px;
+
+    @include maxW(1023px) {
+      margin-top: 34px;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 34px;
+    }
+  }
+
+  &_items {
+    figure {
+      display: block;
+      z-index: 1;
+      position: relative;
+      height: 100%;
+      height: auto;
+      padding-bottom: calc((298 / 447) * 100%);
+      background-color: #ccc;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    h3 {
+      margin-top: 25px;
+      font-size: 1.9rem;
+      font-weight: 500;
+      letter-spacing: -0.76px;
+      line-height: 1.5;
+      text-align: justify;
+    }
+
+    p {
+      margin-top: 16px;
+      font-family: $en-fonts;
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.64px;
+      line-height: 1.5;
+      opacity: 0.7;
+    }
+
+    @include maxW(1023px) {
+      figure {
+        padding-bottom: calc((245 / 374) * 100%);
+      }
+
+      h3 {
+        margin-top: 20px;
+        font-size: 1.6rem;
+        letter-spacing: -0.64px;
+      }
+
+      p {
+        margin-top: 16px;
+        font-size: 1.3rem;
+        letter-spacing: 0.52px;
+      }
     }
   }
 }
