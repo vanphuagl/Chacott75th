@@ -18,13 +18,16 @@
 
   &_logo {
     position: absolute;
-    top: 48%;
-    left: 51%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
     opacity: 0;
 
     @include maxW(1023px) {
+      top: 48%;
+      left: 51%;
+      
       svg {
         width: 268.26px;
         height: auto;

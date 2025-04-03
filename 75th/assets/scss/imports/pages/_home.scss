@@ -68,8 +68,8 @@
 
       &_inner {
         position: absolute;
-        left: 51.5%;
-        top: 48%;
+        left: 50%;
+        top: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
 
@@ -87,6 +87,9 @@
         margin-top: 200px;
 
         &_inner {
+          left: 51.5%;
+          top: 48%;
+          
           p {
             font-size: 1.5rem;
           }
