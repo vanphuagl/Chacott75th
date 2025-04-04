@@ -3,7 +3,7 @@
 const init = () => {
   console.clear();
   // gsap config
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
   ScrollTrigger.clearScrollMemory("manual");
   ScrollTrigger.refresh();
   if (window.innerWidth < 1024) {
@@ -23,6 +23,9 @@ const init = () => {
   const ll = new LazyLoad({
     threshold: 0,
   });
+  // session storage loading
+  // document.body.classList.remove("fadeout");
+  sessionStorage.setItem("opening-displayed", !0);
 };
 
 // ===== lenis =====
@@ -45,52 +48,61 @@ const initLoader = () => {
       lenis.start();
       //  scroll hidden header logo
       ScrollTrigger.create({
-        animation: gsap.fromTo(
-          "[data-logo-shrink]",
-          { opacity: 1 },
-          { opacity: 0, duration: 1, ease: Power4.easeInOut }
-        ),
-        trigger: "[data-top-chacott]",
-        start: "top+=10% center",
-        end: "top+=10% center",
-        toggleActions: "play none reverse none",
-        markers: false,
+        // animation: gsap.fromTo(
+        //   "[data-logo-shrink]",
+        //   { opacity: 1 },
+        //   { opacity: 0, duration: 1, ease: Power4.easeInOut }
+        // ),
+        // trigger: "[data-top-chacott]",
+        // start: "top+=10% center",
+        // end: "top+=10% center",
+        // toggleActions: "play none reverse none",
+        // markers: true,
       });
     },
   });
 
-  preloader
-    .to("[data-loading-logo]", {
+  if (sessionStorage.getItem("opening-displayed") === "true") {
+    document.querySelector("[data-loading]").remove();
+    document.querySelector("[data-logo-shrink]").classList.add("is-done");
+    lenis.start();
+    preloader.to("[data-logo-shrink], [data-header-logo], [data-scrolldown]", {
       opacity: 1,
-      duration: 1,
-      delay: 1,
-      ease: Power4.easeInOut,
-    })
-    .to("[data-loading-overlay]", {
-      top: 0,
-      duration: 1.8,
-      delay: 1,
-      ease: Power4.easeOut,
-    })
-    .to(
-      "[data-logo-shrink]",
-      {
-        opacity: 1,
-        duration: 0.5,
-        onComplete: () => {
-          gsap.to("[data-loading]", {
-            zIndex: "-100",
-          });
-        },
-      },
-      "-=0.7"
-    )
-    .to("[data-header-logo], [data-scrolldown]", {
-      opacity: 1,
-      duration: 1,
-      delay: 3.8,
-      ease: Power4.easeInOut,
     });
+  } else {
+    preloader
+      .to("[data-loading-logo]", {
+        opacity: 1,
+        duration: 1,
+        delay: 1,
+        ease: Power4.easeInOut,
+      })
+      .to("[data-loading-overlay]", {
+        top: 0,
+        duration: 1.8,
+        delay: 1,
+        ease: Power4.easeOut,
+      })
+      .to(
+        "[data-logo-shrink]",
+        {
+          opacity: 1,
+          duration: 0.5,
+          onComplete: () => {
+            gsap.to("[data-loading]", {
+              zIndex: "-100",
+            });
+          },
+        },
+        "-=0.7"
+      )
+      .to("[data-header-logo], [data-scrolldown]", {
+        opacity: 1,
+        duration: 1,
+        delay: 3.8,
+        ease: Power4.easeInOut,
+      });
+  }
 };
 
 // ===== app height =====
@@ -124,6 +136,7 @@ const scrollEvents = () => {
           width: "100%",
           duration: 1,
         }),
+        invalidateOnRefresh: true,
         start: 100,
         scrub: true,
         trigger: ".top",
@@ -251,6 +264,30 @@ window.addEventListener("pageshow", function () {
 });
 
 // ===== scroll fixed section footer =====
+const hideLogoShrink = gsap.timeline({
+  scrollTrigger: {
+    trigger: "[data-top-chacott]",
+    start: "top+=10% center",
+    end: "top+=10% center",
+    markers: false,
+    invalidateOnRefresh: true,
+    onEnter: () => {
+      gsap.to("[data-logo-shrink]", {
+        opacity: 0,
+        duration: 1,
+        ease: Power4.easeInOut,
+      });
+    },
+    onEnterBack: () => {
+      gsap.to("[data-logo-shrink]", {
+        opacity: 1,
+        duration: 1,
+        ease: Power4.easeInOut,
+      });
+    },
+  },
+});
+
 let panels = gsap.utils.toArray("section");
 panels.pop(); // get rid of the last one (don't need it in the loop)
 panels.forEach((panel, i) => {
@@ -275,9 +312,87 @@ panels.forEach((panel, i) => {
   });
 });
 
-/* ------------------------------ details page ------------------------------ */
+// ===== reszie refresh scroll trigger =====
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 1023) {
+    ScrollTrigger.refresh();
+  }
+});
+
+// ===== click add fadeout =====
+document.addEventListener("click", function (e) {
+  const link = e.target.closest(
+    'a:not([href^="#"]):not([target]):not([href^="mailto"]):not([href^="tel"])'
+  );
+  if (!link) return;
+
+  e.preventDefault();
+  const url = link.getAttribute("href");
+
+  if (url && url !== "") {
+    const idx = url.indexOf("#");
+    const hash = idx !== -1 ? url.substring(idx) : "";
+
+    if (hash && hash !== "#") {
+      try {
+        const targetElement = document.querySelector(hash);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+          return false;
+        }
+      } catch (err) {
+        console.error("Invalid hash selector:", hash, err);
+      }
+    }
+
+    document.body.classList.add("fadeout");
+    setTimeout(function () {
+      window.location = url;
+    }, 500);
+  }
+
+  return false;
+});
+
+// ===== click hash =====
+function handleHash() {
+  const hash = window.location.hash;
+  if (hash) {
+    ScrollTrigger.refresh();
+    setTimeout(() => {
+      const target = document.querySelector(hash);
+      if (target) {
+        gsap.to(window, {
+          duration: 1,
+          scrollTo: { y: target, offsetY: 0 },
+          onComplete: () => {
+            window.history.replaceState(null, document.title, window.location.pathname + window.location.search);
+            gsap.to(
+              "[data-logo-shrink], [data-header-logo], [data-scrolldown]",
+              {
+                opacity: 0,
+              }
+            );
+            setTimeout(() => {
+              document.body.classList.remove("fadeout");
+            }, 100);
+          },
+        });
+      }
+    }, 100);
+  } else {
+    document.body.classList.remove("fadeout");
+  }
+}
+window.addEventListener("load", handleHash);
+
+// ===== details page =====
 if (document.getElementById("detailspage")) {
-  const detailsSwiper = new Swiper('.detail_gallery', {
+  document.body.classList.remove("fadeout");
+  const detailsSwiper = new Swiper(".detail_gallery", {
     breakpoints: {
       0: {
         slidesPerView: 1.235,
@@ -295,12 +410,5 @@ if (document.getElementById("detailspage")) {
   });
 }
 
-// reszie refresh scroll trigger
-window.addEventListener("resize", () => {
-  if (window.innerWidth > 1023) {
-    ScrollTrigger.refresh();
-  }
-});
-
 // DOMContentLoaded
-window.addEventListener("DOMContentLoaded", init);
+window.addEventListener("load", init);

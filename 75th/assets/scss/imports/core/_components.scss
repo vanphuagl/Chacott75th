@@ -65,6 +65,24 @@
     height: auto;
   }
 
+  &.is-done {
+    .eCae4SwJrFf5,
+    .eCae4SwJrFf9,
+    .eCae4SwJrFf14,
+    .eCae4SwJrFf16 {
+      opacity: 1 !important;
+    }
+
+    .eCae4SwJrFf28,
+    .eCae4SwJrFf23 {
+      stroke-dashoffset: 0 !important;
+    }
+
+    .eCae4SwJrFf31 {
+      opacity: 0 !important;
+    }
+  }
+
   @include maxW(1023px) {
     align-items: center;
     width: calc(224.93px + 76px);
